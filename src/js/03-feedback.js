@@ -8,11 +8,11 @@ form.addEventListener('submit', submitForm);
 autocompleteFormIsLocal();
 
 function saveValue(params) {
-  const { email, message } = params.currentTarget.elements;
-
+  const email = form.email.value;
+  const message = form.message.value;
   const inputValue = {
-    email: email.value,
-    message: message.value,
+    email: email,
+    message: message,
   };
 
   const inputValueJson = JSON.stringify(inputValue);
@@ -21,6 +21,11 @@ function saveValue(params) {
 
 function submitForm(params) {
   params.preventDefault();
+  const feedback = {
+    email: form.email.value,
+    message: form.message.value,
+  };
+  console.log(feedback);
   params.currentTarget.reset();
   localStorage.removeItem(localStorageKey);
 }
